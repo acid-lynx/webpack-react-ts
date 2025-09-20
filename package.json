@@ -4,7 +4,7 @@
   "description": "test project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "webpack serve --open"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,12 @@
     "@babel/preset-typescript": "^7.27.1",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.4",
+    "sass": "^1.93.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
     "typescript": "^5.9.2",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
