@@ -1,52 +1,32 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+
+const buildResolvers = require('./buildResolvers');
+const buildPlugins = require('./buildPlugins');
+const buildRules = require('./buildRules');
 
 module.exports = (env, argv) => {
-    const envFile = env.NODE_ENV ? `.env.${env.NODE_ENV}` : '.env';
+    const options = {
+        isDev: env.NODE_ENV === 'dev',
+        paths: {
+            entry: path.resolve(__dirname, '..', 'src', 'index.tsx'),
+            output: path.resolve(__dirname, '..', 'build'),
+            html: path.resolve(__dirname, '..', 'src', 'index.html'),
+            dotenv: path.resolve(__dirname, `env.${env.NODE_ENV}`),
+        }
+    }
 
     return {
-        mode: 'development',
-        entry: './src/index.tsx',
+        mode: options.isDev ? 'development': 'production',
+        entry: options.paths.entry,
         output: {
-            path: path.resolve(__dirname, '..', 'build'),
+            path: options.paths.output,
             filename: 'bundle.js',
             clean: true
         },
-        resolve: {
-            extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
-        },
+        resolve: buildResolvers(),
         module: {
-            rules: [
-                {
-                    test: /\.(ts|js)x?$/,
-                    exclude: /node_modules/,
-                    use: ['babel-loader']
-                },
-                {
-                    test: /\.(s[ac]ss|css)$/,
-                    use: ['style-loader', 'css-loader', 'sass-loader'],
-                    generator: {
-                        filename: 'images/[name].[hash][ext]'  // Organized + cache-friendly
-                    }
-                },
-                {
-                    test: /\.(png|jpg|jpeg|gif|svg)$/i,
-                    type: 'asset/resource',
-                    generator: {
-                        filename: 'images/[name].[hash][ext]'
-                    }
-                }
-            ],
+            rules: buildRules()
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: './src/index.html',
-                filename: 'index.html',
-            }),
-            new Dotenv({
-                path: path.resolve(__dirname, `${envFile}`),
-            })
-        ]
+        plugins: buildPlugins(options)
     };
 }
