@@ -4,8 +4,8 @@
   "description": "test project",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve --config webpack/webpack.config.js --env NODE_ENV=dev",
-    "build": "webpack --config webpack/webpack.config.js --env NODE_ENV=prod"
+    "serve": "webpack serve --config webpack.config.js --env NODE_ENV=dev",
+    "build": "webpack --config webpack.config.js --env NODE_ENV=prod"
   },
   "repository": {
     "type": "git",

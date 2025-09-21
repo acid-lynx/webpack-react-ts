@@ -3,7 +3,6 @@ const Dotenv = require('dotenv-webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 function buildPlugins({paths, isDev}) {
-    console.log('isDev', isDev);
     return [
         new HtmlWebpackPlugin({
             template: paths.html,

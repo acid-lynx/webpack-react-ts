@@ -1,17 +1,17 @@
 const path = require('path');
 
-const buildResolvers = require('./buildResolvers');
-const buildPlugins = require('./buildPlugins');
-const buildRules = require('./buildRules');
+const buildResolvers = require('./webpack/buildResolvers');
+const buildPlugins = require('./webpack/buildPlugins');
+const buildRules = require('./webpack/buildRules');
 
 module.exports = (env) => {
     const options = {
         isDev: env.NODE_ENV === 'dev',
         paths: {
-            entry: path.resolve(__dirname, '..', 'src', 'index.tsx'),
-            output: path.resolve(__dirname, '..', 'build'),
-            html: path.resolve(__dirname, '..', 'src', 'index.html'),
-            dotenv: path.resolve(__dirname, `.env.${env.NODE_ENV}`),
+            entry: path.resolve(__dirname, 'src', 'index.tsx'),
+            output: path.resolve(__dirname, 'build'),
+            html: path.resolve(__dirname, 'src', 'index.html'),
+            dotenv: path.resolve(__dirname, 'webpack', `.env.${env.NODE_ENV}`),
         }
     }
 
