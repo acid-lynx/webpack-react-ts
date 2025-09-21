@@ -20,6 +20,8 @@
   },
   "include": [
     "src/**/*",
-    "webpack/config/*.d.ts"
+    "webpack/config/*.d.ts",
+//    "eslint.config.js",
+//    "webpack.config.js"
   ]
 }
