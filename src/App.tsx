@@ -1,4 +1,5 @@
 import logo from './assets/react-png.svg';
+import './style.css'
 
 export const App = () => {
     return (

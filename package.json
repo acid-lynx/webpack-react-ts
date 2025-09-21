@@ -4,7 +4,8 @@
   "description": "test project",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve --open"
+    "serve": "webpack serve --config webpack/webpack.config.js --env NODE_ENV=dev",
+    "build": "webpack --config webpack/webpack.config.js --env env=prod"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "@types/react-dom": "^19.1.9",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
+    "dotenv": "^17.2.2",
+    "dotenv-webpack": "^8.1.1",
     "html-webpack-plugin": "^5.6.4",
     "sass": "^1.93.0",
     "sass-loader": "^16.0.5",
