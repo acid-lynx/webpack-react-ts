@@ -1,12 +1,11 @@
-const js = require('@eslint/js');
-const tsParser = require('@typescript-eslint/parser');
-const tsPlugin = require('@typescript-eslint/eslint-plugin');
-const reactPlugin = require('eslint-plugin-react');
-const reactHooksPlugin = require('eslint-plugin-react-hooks');
+const js = require('@eslint/js')
+const tsParser = require('@typescript-eslint/parser')
+const tsPlugin = require('@typescript-eslint/eslint-plugin')
+const reactPlugin = require('eslint-plugin-react')
+const reactHooksPlugin = require('eslint-plugin-react-hooks')
+const prettierConfig = require('eslint-config-prettier')
 
-// also is antfu plugin option
-
-module.exports = [
+module.exports = [                 // also antfu plugin can be used for setup
   js.configs.recommended,
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
@@ -26,11 +25,11 @@ module.exports = [
         Buffer: 'readonly',
         __dirname: 'readonly',
         __filename: 'readonly',
-      }
+      },
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
-      'react': reactPlugin,
+      react: reactPlugin,
       'react-hooks': reactHooksPlugin,
     },
     rules: {
@@ -41,7 +40,10 @@ module.exports = [
       'no-var': 'error',
 
       // TypeScript rules
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -59,6 +61,7 @@ module.exports = [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
     },
+    prettierConfig,
     settings: {
       react: {
         version: 'detect', // Reads from package.json
@@ -66,10 +69,11 @@ module.exports = [
     },
   },
   {
-    ignores: [ // removes config files from TS check (need to be changed after TS migration)
+    ignores: [
+      // removes config files from TS check (need to be changed after TS migration)
       'eslint.config.js',
       'webpack.config.js',
       '*.config.js',
     ],
   },
-];
+]

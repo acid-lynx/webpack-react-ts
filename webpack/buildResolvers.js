@@ -1,7 +1,7 @@
 function buildResolvers() {
-    return {
-        extensions: ['.tsx', '.ts', '.js'],
-    }
+  return {
+    extensions: ['.tsx', '.ts', '.js'],
+  }
 }
 
-module.exports = buildResolvers;
+module.exports = buildResolvers
