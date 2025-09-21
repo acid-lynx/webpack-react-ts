@@ -1,15 +1,18 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-function buildPlugins(options) {
+function buildPlugins({paths, isDev}) {
+    console.log('isDev', isDev);
     return [
         new HtmlWebpackPlugin({
-            template: options.paths.html,
+            template: paths.html,
             filename: 'index.html',
         }),
         new Dotenv({
-            path: options.paths.dotenv,
-        })
+            path: paths.dotenv,
+        }),
+        isDev && new ReactRefreshWebpackPlugin(),
     ]
 }
 
